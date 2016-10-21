@@ -1,8 +1,8 @@
 providers:
   -
     name: "webmotors"
-    api:
-      url: "http://www.webmotors.com.br"
-      carros:
-        marcas: "/carro/marcas"
-        modelos: "/carro/modelos"
+    url: "http://www.webmotors.com.br"
+    resources:
+      cars:
+        brands: "/carro/marcas"
+        models: "/carro/modelos"

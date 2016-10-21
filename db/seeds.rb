@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-# Save providers (loaded in initializer)
+# Save providers (loaded in config/application.rb)
 PROVIDERS.each do |p|
   Provider.find_or_create_by(name: p['name'])
 end
