@@ -30,7 +30,7 @@ RSpec.describe Vehicle, type: :model do
     
   end
 
-  context "relationship with makers" do
+  context "relationship with makers and types" do
     subject(:new_vehicle) { FactoryGirl.create(:vehicle)}
   
     it "must have a relationship with the Maker" do
