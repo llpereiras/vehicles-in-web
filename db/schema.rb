@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021205806) do
+ActiveRecord::Schema.define(version: 20161021212701) do
 
   create_table "makers", force: :cascade do |t|
     t.string   "name"
     t.integer  "provider_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "provider_make_id"
   end
 
   add_index "makers", ["provider_id"], name: "index_makers_on_provider_id"

@@ -9,7 +9,7 @@ module Importers
     end
     
     def makers
-      uri = File.join(@url, @resources['cars']['brands'])
+      uri = URI("#{@url}#{@resources['cars']['brands']}")
       response = Net::HTTP.post_form(uri, {})
       json = JSON.parse response.body
 
@@ -17,9 +17,10 @@ module Importers
 
       json.each do |maker|
         prototype = Adapters::Maker.webmotors(maker)
+        prototype[:provider] = @provider
         next if prototype[:name].empty?
         next if Maker.find_by(name: prototype[:name])
-        
+        Maker.create(prototype)
       end
        
       puts "#{json.size} car makers saved"
