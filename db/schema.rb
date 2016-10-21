@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226182941) do
+ActiveRecord::Schema.define(version: 20161021143153) do
+
+  create_table "makers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "provider_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "makers", ["provider_id"], name: "index_makers_on_provider_id"
 
   create_table "makes", force: :cascade do |t|
     t.string   "name"
@@ -26,5 +35,21 @@ ActiveRecord::Schema.define(version: 20160226182941) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "providers", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "maker_id"
+    t.integer  "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "vehicles", ["maker_id"], name: "index_vehicles_on_maker_id"
 
 end
