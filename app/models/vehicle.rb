@@ -1,6 +1,5 @@
 class Vehicle < ActiveRecord::Base
-  validates_presence_of :name
-  validates_presence_of :maker
+  validates_presence_of :name, :maker, :type
   
   belongs_to :maker
 
