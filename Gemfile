@@ -43,4 +43,12 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
+  gem 'factory_girl_rails', :require => false
+  gem 'faker'
+  gem 'database_cleaner'
 end
+
+gem 'httparty'
+#gem 'mysql2', '~> 0.3.19'
+#gem 'puma'
