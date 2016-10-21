@@ -4,5 +4,5 @@ providers:
     url: "http://www.webmotors.com.br"
     resources:
       cars:
-        brands: "/carros/marcas"
-        models: "/carros/modelos"
+        brands: "/carro/marcas"
+        models: "/carro/modelos"

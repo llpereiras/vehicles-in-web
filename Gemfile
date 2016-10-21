@@ -49,13 +49,6 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem 'httparty'
+#gem 'httparty'
 #gem 'mysql2', '~> 0.3.19'
 #gem 'puma'
-
-gem 'capybara'
-gem 'poltergeist'
-gem 'phantomjs', :require => 'phantomjs/poltergeist'
-gem 'htmlentities'
-gem 'sanitize'
-gem 'selenium-webdriver'

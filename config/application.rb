@@ -35,9 +35,6 @@ module AdtsysApplicantTest
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.autoload_paths << File.expand_path('../app/services', __dir__)
-    config.autoload_paths << File.expand_path('../app/services/concerns', __dir__)
-
     config.autoload_paths << File.expand_path('../app/models/adapters', __dir__)
     config.autoload_paths << File.expand_path('../app/models/importers', __dir__)
     

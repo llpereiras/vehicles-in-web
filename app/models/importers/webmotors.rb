@@ -10,24 +10,19 @@ module Importers
     
     def makers
       uri = File.join(@url, @resources['cars']['brands'])
+      response = Net::HTTP.post_form(uri, {})
+      json = JSON.parse response.body
 
-      PhantomClient.new_session
-      PhantomClient.visit(uri, sleep: 3)
-      
-      # click button brands
-      PhantomClient.click('/html/body/div[2]/div[4]/div[4]/div[3]/div/div/div/button[1]', sleep: 3)
+      raise "No makers found on the site." if json.empty? or json.nil?
 
-      doc = Nokogiri::HTML(PhantomClient.html)
-      elements = doc.search('li.stage>ul>li>a>span.dis-tc.valign-m.wid100prc.lh-1_2em')
-      brands = elements.map{|b| b.text.titleize}.uniq!
-      
-      raise "No marks found on the site. Check the importer!" if brands.empty? or brands.nil?
-      
-      brands.each do |b|
-        Maker.create(name: b, provider: @provider ) unless Maker.find_by(name: b)
+      json.each do |maker|
+        prototype = Adapters::Maker.webmotors(maker)
+        next if prototype[:name].empty?
+        next if Maker.find_by(name: prototype[:name])
+        
       end
-
-      puts "#{brands.size} car makers saved"
+       
+      puts "#{json.size} car makers saved"
     end
 
     def vehicles
