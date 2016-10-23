@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
@@ -43,4 +43,15 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
+  gem 'factory_girl_rails', :require => false
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'json-schema'
 end
+
+gem 'httparty'
+gem 'puma'
+#gem 'mysql2', '~> 0.3.19'
+gem 'angularjs-rails'
+gem 'bootstrap3-rails'
