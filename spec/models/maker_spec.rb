@@ -20,13 +20,14 @@ RSpec.describe Maker, type: :model do
     
   end
 
-  context "relationship with makers" do
-    subject(:new_maker) { FactoryGirl.create(:maker, provider: FactoryGirl.create(:provider))}
-  
-    it "must have a relationship with the Provider" do
-      expect(new_maker.provider).to be_an_instance_of Provider
-    end
+  context "relationship with Provider" do
+    let(:new_maker) { FactoryGirl.create(:maker)}
+    let(:new_provider) { FactoryGirl.create(:provider)}
+    subject(:relationship) { FactoryGirl.create(:maker_provider, provider: new_provider, maker: new_maker)}
 
+    it "must have a relationship with the Provider" do
+      expect(new_maker.providers).to include(relationship)
+    end
   end
 
 end

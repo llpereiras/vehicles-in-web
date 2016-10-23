@@ -20,11 +20,18 @@ module Webmotors
         end
 
         json.each do |maker|
-          prototype = Adapters::Maker.webmotors(maker, provider: @provider)
+          prototype = Adapters::Maker.webmotors(maker)
           next if prototype[:name].empty?
-          register = Maker.find_by(name: prototype[:name])
-          register = (register) ? register.update(prototype) : Maker.create(prototype)
+          register = ::Maker.find_by(name: prototype[:name])
+          if register
+            register.update(prototype)
+          else
+            register = ::Maker.create(prototype)
+          end
           raise "Maker can not be saved. #{prototype}" unless register
+
+          # relationship with provider
+          ::MakerProvider.find_or_create_by(maker_id: register.id, provider_id: @provider.id, provider_make_id: maker['Id'])
         end
 
         puts "#{json.size} cars makers saved"
@@ -34,8 +41,8 @@ module Webmotors
         puts "Saving cars models..."
         uri = URI("#{@url}#{@resources['cars']['models']}")
 
-        ::Maker.by_webmotors.each do |maker|
-          response = HttpClient.post(url: uri, form: {marca: maker.provider_make_id})
+        ::Maker.eager_load(:providers).by_webmotors.each do |maker|
+          response = HttpClient.post(url: uri, form: {marca: maker.providers.first.try(:provider_make_id)})
           json = JSON.parse response.body
 
           if json.empty? or json.nil?
@@ -46,8 +53,8 @@ module Webmotors
           json.each do |vehicle|
             prototype = Adapters::Vehicle.webmotors(vehicle, maker: maker, category: ::Vehicle.categories['car'] )
             next if prototype[:name].empty?
-            next if Vehicle.find_by(name: prototype[:name])
-            vehicle = Vehicle.create(prototype)
+            next if ::Vehicle.find_by(name: prototype[:name])
+            vehicle = ::Vehicle.create(prototype)
             raise "Vehicle can not be saved. #{prototype}" unless vehicle
           end
 

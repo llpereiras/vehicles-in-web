@@ -1,11 +1,9 @@
 module Adapters
   class Maker
     
-    def self.webmotors(item, provider: nil)
+    def self.webmotors(item)
       {
         name: item['Nome'].titleize,
-        provider: provider,
-        provider_make_id: item['Id']
       }
     end
     

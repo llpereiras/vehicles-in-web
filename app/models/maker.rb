@@ -1,7 +1,10 @@
 class Maker < ActiveRecord::Base
   validates_presence_of :name
-  
-  belongs_to :provider
 
-  scope :by_webmotors, -> { where(provider: Provider.find_by(name: 'webmotors')) }
+  has_many :providers, class_name: 'MakerProvider'
+
+  scope :by_webmotors, -> do
+    joins(:providers)
+    .where('makers_providers.provider_id = ?', Provider.find_by(name: 'webmotors'))
+  end
 end

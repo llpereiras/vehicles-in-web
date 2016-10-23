@@ -11,31 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023025935) do
+ActiveRecord::Schema.define(version: 20161023053833) do
 
   create_table "makers", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "provider_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "provider_make_id"
-  end
-
-  add_index "makers", ["provider_id"], name: "index_makers_on_provider_id"
-
-  create_table "makes", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "webmotors_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "models", force: :cascade do |t|
-    t.integer  "make_id"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "makers_providers", force: :cascade do |t|
+    t.integer  "maker_id"
+    t.integer  "provider_id"
+    t.integer  "provider_make_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "makers_providers", ["maker_id"], name: "index_makers_providers_on_maker_id"
+  add_index "makers_providers", ["provider_id"], name: "index_makers_providers_on_provider_id"
 
   create_table "providers", force: :cascade do |t|
     t.string   "name"

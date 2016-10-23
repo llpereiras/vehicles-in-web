@@ -16,4 +16,5 @@
 # end
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'category', 'categories'
+  inflect.irregular 'maker_provider', 'makers_providers'
 end

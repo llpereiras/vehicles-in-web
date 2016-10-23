@@ -19,23 +19,15 @@ RSpec.describe Provider, type: :model do
     end
     
   end
-  
-  context "relationship with makers" do
-    
-    subject(:new_provider) { FactoryGirl.create(:provider)}
-    let!(:generate_makers) do
-      FactoryGirl.create(:maker, provider: new_provider)
-      FactoryGirl.create(:maker, provider: nil)
-    end
 
-    it "there must be 2 makers saved" do
-      expect(Maker.all).to have_exactly(2).items
+  context "relationship with Maker" do
+    let(:new_maker) { FactoryGirl.create(:maker)}
+    let(:new_provider) { FactoryGirl.create(:provider)}
+    subject(:relationship) { FactoryGirl.create(:maker_provider, provider: new_provider, maker: new_maker)}
+
+    it "must have a relationship with the Maker" do
+      expect(new_provider.makers).to include(relationship)
     end
-    
-    it "there must be 1 maker related to the Provider" do
-      expect(Maker.where('provider_id is not null')).to have_exactly(1).items
-    end
-    
   end
 
 end
