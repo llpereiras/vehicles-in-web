@@ -19,4 +19,4 @@ Obs: todo o cuidado e rigor adicional serão contados como pontos positivos.
 ## RESOLUÇÃO
 
 - [ Resumo da refatoração](REFACTOR.md)
-- [ Roteiro para instalação.MD](SETUP.md)
+- [ Roteiro para instalação](SETUP.md)
