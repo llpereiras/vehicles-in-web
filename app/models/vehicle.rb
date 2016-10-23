@@ -1,16 +1,12 @@
 class Vehicle < ActiveRecord::Base
-  validates_presence_of :name, :maker, :type
+  validates_presence_of :name, :maker, :category
   
   belongs_to :maker
 
-  enum type: [:car, :motorcycle]
+  enum category: [:car, :motorcycle]
 
-  scope :car, -> { where(type: Vehicle.types['car'])}
-  scope :motorcycle, -> { where(type: Vehicle.types['motorcycle'])}
+  scope :car, -> { where(type: Vehicle.category['car'])}
+  scope :motorcycle, -> { where(type: Vehicle.category['motorcycle'])}
+  scope :by_maker, -> (maker_id) { where(maker_id: maker_id)}
 
-  scope :by_webmotors, -> do
-    joins(:makers)
-      .where(provider: Provider.find(name: 'webmotors' ) )
-  end
-  
 end

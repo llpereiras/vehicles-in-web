@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :makers
-  resources :vehicles
-  resources :providers
   get "/" => "home#index"
-  get "/models" => "models#index"
+  get "/makers" => "makers#index", defaults: {format: :json}
+  get "/makers/:maker_id/vehicles" => "vehicles#index", defaults: {format: :json}
 end

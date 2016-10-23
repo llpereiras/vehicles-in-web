@@ -49,6 +49,8 @@ group :test do
   gem 'database_cleaner'
 end
 
-#gem 'httparty'
+gem 'httparty'
+gem 'puma'
 #gem 'mysql2', '~> 0.3.19'
-#gem 'puma'
+gem 'angularjs-rails'
+gem 'bootstrap3-rails'
