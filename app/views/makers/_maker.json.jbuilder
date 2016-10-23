@@ -1,1 +1,1 @@
-json.extract! maker, :id, :name, :provider_id, :provider_make_id, :created_at, :updated_at
+json.extract! maker, :id, :name, :providers, :created_at, :updated_at
