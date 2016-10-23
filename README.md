@@ -1,6 +1,6 @@
 # Teste Ruby para Candidatos
 
-## Resumo ()
+## Resumo
 
 O objetivo da aplicação é consultar marcas e modelos de carros usando a API do WebMotors.
 
@@ -16,7 +16,7 @@ Obs: todo o cuidado e rigor adicional serão contados como pontos positivos.
 
 ---
 
-## ༼ つ ◕_◕ ༽つ RESOLUÇÃO
+## RESOLUÇÃO
 
-[ Resumo da refatoração](REFACTOR.md)
-[ Roteiro para instalação.MD](SETUP.md)
+- [ Resumo da refatoração](REFACTOR.md)
+- [ Roteiro para instalação.MD](SETUP.md)
