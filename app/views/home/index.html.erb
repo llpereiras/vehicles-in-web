@@ -1,14 +1,18 @@
-<% makes = Make.all %>
+<div class="row" ng-controller="HomeController">
+  <div class="col-md-4">
+    <h1>Montadoras</h1>
+    <p>
+      <label>Escolha a Montadora:</label>
+      <select ng-options="maker as maker.name for maker in makers"
+              ng-model="selected" ng-change="loadVehicles()"></select>
+    </p>
+  </div>
 
-<form action="/models" method="GET">
-  <p>
-    <label>Escolha a Fabricante:</label>
-    <select name="webmotors_make_id">
-      <% makes.each do |make| %>
-        <option value="<%= make.webmotors_id %>"><%= make.name %></option>
-      <% end %>
-    </select>
-  </p>
+  <div class="col-md-4" ng-show="vehicles.length > 0">
+    <h1>Veículos</h1>
+    <ul>
+      <li ng-repeat="vehicle in vehicles">{{ vehicle.name }}</li>
+    </ul>
+  </div>
 
-  <input type="submit" value="Buscar modelos">
-</form>
+</div>
