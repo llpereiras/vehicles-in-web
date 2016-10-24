@@ -28,12 +28,12 @@
 
 ###### Importa os dados das montadoras
 ```
- $ rake webmototors:importers:car[makers]
+ $ rake webmotors:importers:car[makers]
 ```
 
 ###### Importa os dados dos veículos
 ```
- $ rake webmototors:importers:car[vehicles]
+ $ rake webmotors:importers:car[vehicles]
 ```
 
 ## Aplicação
